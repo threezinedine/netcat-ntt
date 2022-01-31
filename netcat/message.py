@@ -4,49 +4,46 @@ import json
 class Message:
     header_size = 10
 
-    def __init__(self, msg=None, type_msg=None, b_msg=None):
+    def __init__(self, content=None, title=None, b_mess=None):
         self._dic = {}
-        self._encoded_msg = None
+        self._b_mess = b''
 
-        if msg is not None or type_msg is not None:
-            self._set_msg(msg)
-            self._set_title(type_msg)
+        if content is not None or title is not None:
+            self._dic["content"] = content if content is not None else ""
+            self._dic["title"] = title if title is not None else ""
             self._encode()
         else:
-            self._decode(b_msg)
+            self._decode(b_mess)
 
-    def _set_msg(self, msg):
-        if msg is None: 
-            msg = ""
-        self._dic["content"] = msg
-
-    def _set_title(self, type_msg):
-        if type_msg is None:
-            type_msg = ""
-        self._dic["type"] = type_msg
-
-    def _create_header_msg(self, dumped_dict):
+    def _create_header_msg(self):
+        dumped_dict = json.dumps(self._dic) 
         len_msg = len(dumped_dict)
         header_msg = f"{len_msg}"
 
         while len(header_msg) < self.header_size:
             header_msg += " "
-        return header_msg
+        return header_msg.encode('utf-8')
 
     def _encode(self):
         dumped_dict = json.dumps(self._dic) 
-        header_msg = self._create_header_msg(dumped_dict)
-        self._encoded_msg = (header_msg + dumped_dict).encode("utf-8")
+        self._b_mess = dumped_dict.encode("utf-8")
 
-    def _decode(self, b_msg):
-        self._dic = json.loads(b_msg.decode("utf-8"))
-        self._encode()
+    def _decode(self, b_mess):
+        self._dic = json.loads(b_mess.decode("utf-8"))
+        self._b_mess = b_mess
 
-    def get_message(self):
+    def get_b_mess(self):
+        return self._b_mess
+
+    def get_content(self):
         return self._dic["content"] 
 
-    def get_message_type(self):
-        return self._dic["type"]
+    def get_title(self):
+        return self._dic["title"]
+
+    def get_dict(self):
+        return self._dic
 
     def get_encoded_message(self):
-        return self._encoded_msg
+        header_msg = self._create_header_msg()
+        return header_msg + self._b_mess
