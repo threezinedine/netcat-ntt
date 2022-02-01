@@ -5,7 +5,7 @@ import json
 
 
 class CommunicateModeTest(unittest.TestCase):
-    test_dict = {'host': '192.168.1.1', 'port': 1234, 'execute': 'test.txt'}
+    test_dict = {'host': '192.168.1.1', 'port': 1234, 'execute': 'test.txt', 'send': None}
     test_message = Message(title="mode", content=json.dumps(test_dict))
 
     def assertMessage(self, message1, message2):

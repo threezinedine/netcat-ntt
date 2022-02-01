@@ -9,6 +9,8 @@ parser.add_argument('host')
 parser.add_argument('port', type=int)
 parser.add_argument('-s', '--server', action='store_true')
 parser.add_argument('-e', '--execute')
+parser.add_argument('-S', '--send', nargs='+')
+parser.add_argument('-r', '--result', action='store_true')
 args = parser.parse_args()
 
 

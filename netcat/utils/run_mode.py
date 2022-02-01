@@ -1,7 +1,9 @@
 from ..message import Message
+import subprocess
+
 
 def send_command_client(args):
-    command = args['command'] 
+    command = args['send'] 
     if args['result']:
         title = "result"
     else:
@@ -11,5 +13,13 @@ def send_command_client(args):
     return message
 
 
-def send_mode_server(mess):
-    pass
+def send_command_server(mess):
+    command = ' '.join(mess.get_content()) 
+    result = subprocess.run(command, shell=True, 
+            stdout=subprocess.PIPE)
+
+    if mess.get_title() == "result": 
+        return result.stdout.decode('utf-8')
+    else:
+        return ""
+

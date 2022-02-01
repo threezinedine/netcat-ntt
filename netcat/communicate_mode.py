@@ -1,5 +1,6 @@
 import json
 from .message import Message
+from .utils import send_command_client, send_command_server
 
 
 class CommunicateMode:
@@ -20,9 +21,17 @@ class CommunicateMode:
                 content=json.dumps(args)
                 )
 
-        return lambda x: x + 1, self._mode_mess, 
+        func = None
+
+        if args['send']:
+            func = send_command_client
+
+        return func, self._mode_mess, 
 
     def get_mode(self, mode_mess):
-        print(type(mode_mess.get_content()), mode_mess.get_content())
         self._args = json.loads(mode_mess.get_content())
-        return lambda x: -1
+        func = None
+
+        if self._args['send']:
+            func = send_command_server 
+        return func
