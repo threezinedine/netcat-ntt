@@ -1,9 +1,5 @@
 from setuptools import setup, find_packages
 
-
-with open('requirements.txt', 'r') as file:
-    REQUIREMENTS = file.read()
-
 LONG_DES = "A netcat program" 
 NAME = "netcat-ntt"
 VERSION = "1.0.1"
