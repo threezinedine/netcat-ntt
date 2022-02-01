@@ -1,2 +1,5 @@
 usecase.pptx
 venv
+build
+dist
+netcat_ntt.egg-info
