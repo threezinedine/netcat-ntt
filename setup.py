@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 LONG_DES = "A netcat program" 
 NAME = "netcat-ntt"
-VERSION = "1.0.18"
+VERSION = "1.1.4"
 CLASSIFIERS = [
     "Development Status :: 1 - Planning",
     "Environment :: Console", 

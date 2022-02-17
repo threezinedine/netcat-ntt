@@ -1,7 +1,7 @@
-from netcat import Server, Client
+from .netcat import Server, Client
 import socket
 import argparse
-from netcat.utils import convert_sys_arg_to_dict
+from .netcat.utils import convert_sys_arg_to_dict
 
 
 parser = argparse.ArgumentParser()
