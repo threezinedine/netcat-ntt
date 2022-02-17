@@ -25,6 +25,7 @@ class Message:
         return header_msg.encode('utf-8')
 
     def _encode(self):
+        print(self._dic)
         dumped_dict = json.dumps(self._dic) 
         self._b_mess = dumped_dict.encode("utf-8")
 

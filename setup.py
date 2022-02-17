@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 LONG_DES = "A netcat program" 
 NAME = "netcat-ntt"
-VERSION = "1.0.1"
+VERSION = "1.0.18"
 CLASSIFIERS = [
     "Development Status :: 1 - Planning",
     "Environment :: Console", 
@@ -21,11 +21,7 @@ setup (
     long_description=LONG_DES,
     long_description_content_type='text/markdown',
     packages=find_packages(),
-    entry_points = {
-        'console_scripts': [
-            'netcat = netcat.py'
-            ]
-        },
+    entry_points={'console_scripts':['netcat-ntt=netcat.main:main']},
     classifiers=CLASSIFIERS
     )
 
