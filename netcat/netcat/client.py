@@ -19,10 +19,9 @@ class Client(Socket):
         confirm_mess = self.receive(self._socket)
 
         assert confirm_mess.get_title() == "confirm"
+        func(self._args, self, self._socket)
 
-        self.send(func(self._args), self._socket)
+        self.send(Message(title='end'), self._socket)
         msg = self.receive(self._socket)
-        if self._args['result']:
-            print(msg.get_content())
 
         self.send(Message(title='quit'), self._socket)

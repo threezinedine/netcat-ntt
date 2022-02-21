@@ -21,9 +21,9 @@ class Server(Socket):
         msg = self.receive(socket)
         func = communicate_mode.get_mode(msg)
         self.send(Message(title='confirm'), socket)
+        func(self, socket)
         msg = self.receive(socket)
-        result = func(msg)
-        self.send(Message(title='confirm', content=result), socket)
+        self.send(Message(title='confirm'), socket)
         msg = self.receive(socket)
         socket.close()
 

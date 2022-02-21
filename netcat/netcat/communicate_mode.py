@@ -1,7 +1,8 @@
 import json
 from .message import Message
 from .utils import (send_command_client, send_command_server,
-            upload_file_client, upload_file_server)
+            upload_file_client, upload_file_server,
+            download_file_client, download_file_server)
 
 
 class CommunicateMode:
@@ -28,6 +29,8 @@ class CommunicateMode:
             func = send_command_client
         elif args['upload']:
             func = upload_file_client
+        elif args['download']:
+            func = download_file_client
 
         return func, self._mode_mess, 
 
@@ -39,4 +42,6 @@ class CommunicateMode:
             func = send_command_server 
         elif self._args['upload']:
             func = upload_file_server
+        elif self._args['download']:
+            func = download_file_server
         return func

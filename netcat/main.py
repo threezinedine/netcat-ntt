@@ -13,6 +13,7 @@ def main():
     parser.add_argument('-S', '--send', nargs='+')
     parser.add_argument('-r', '--result', action='store_true')
     parser.add_argument('-u', '--upload')
+    parser.add_argument('-d', '--download')
     args = parser.parse_args()
 
     if args.server:
